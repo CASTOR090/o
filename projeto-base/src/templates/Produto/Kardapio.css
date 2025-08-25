@@ -1,0 +1,115 @@
+/* Mobile-first base */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.menu-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  background: #fff;
+  border-bottom: 1px solid #ccc;
+  z-index: 1000;
+  height: 50px;
+}
+
+.menu-home {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  background-color: #fff;
+  border-right: 1px solid #ccc;
+}
+
+.home-link {
+  font-size: 16px;
+  font-weight: bold;
+  color: #007bff;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.menu-scroll {
+  flex: 1;
+  display: flex;
+  overflow-x: auto;
+  align-items: center;
+  padding: 0 10px;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc transparent;
+}
+
+.menu-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.menu-scroll::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 3px;
+}
+
+.menu-item {
+  display: inline-block;
+  padding: 8px 12px;
+  margin: 0 5px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.menu-scroll a.ativo .menu-item {
+  color: #007bff;
+  border-bottom: 2px solid #007bff;
+}
+
+.conteudo-cardapio {
+  padding-top: 60px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+
+.categoria-section {
+  margin-bottom: 30px;
+}
+
+.categoria-section h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.produto-card {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.produto-card h3 {
+  font-size: 16px;
+  margin: 0 0 5px;
+}
+
+.produto-card p {
+  font-size: 14px;
+  margin: 2px 0;
+}
+
+/* Desktop enhancements */
+@media (min-width: 768px) {
+  .menu-fixo {
+    justify-content: flex-start;
+    padding: 15px 30px;
+  }
+
+  .menu-fixo a {
+    font-size: 16px;
+  }
+}

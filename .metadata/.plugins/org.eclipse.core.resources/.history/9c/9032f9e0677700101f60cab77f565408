@@ -1,0 +1,38 @@
+package br.itb.projeto.pizzaria3e.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
+import br.itb.projeto.pizzaria3e.model.entity.Produto;
+import br.itb.projeto.pizzaria3e.model.entity.Service;
+import br.itb.projeto.pizzaria3e.model.repository.UsuarioRepository;
+import br.itb.projeto.pizzaria3e.model.repository.ServiceRepository;
+
+@Service
+public class ServiceService {
+	
+	private serviceRepository Repository;
+	private UsuarioRepository usuarioRepository;
+		
+	public ServiceService(serviceRepository ServiceRepository, UsuarioRepository usuarioRepository) {
+		super();
+		this.ServiceRepository = ServiceRepository;
+		this.usuarioRepository = usuarioRepository;
+	}
+
+	public Service findById(long id) {
+		Optional<Service> Service = ServiceRepository.findById(id);
+
+		if (Service.isPresent()) {
+			return Service.get();
+		}
+		return null;
+	}
+	
+	public List<Service> findAll(){
+		List<Service> promocoes = ServiceRepository.findAll();
+		return promocoes;
+	}
+}

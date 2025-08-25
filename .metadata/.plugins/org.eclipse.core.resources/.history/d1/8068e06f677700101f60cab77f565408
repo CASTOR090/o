@@ -1,0 +1,5 @@
+package br.itb.projeto.pizzaria3e.model.repository;
+
+public class ServicoRepository {
+
+}
