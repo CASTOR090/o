@@ -1,14 +1,16 @@
 package br.itb.projeto.pizzaria3e.service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import br.itb.projeto.pizzaria3e.model.entity.Mensagem;
 import br.itb.projeto.pizzaria3e.model.entity.Produto;
 import br.itb.projeto.pizzaria3e.model.repository.CategoriaRepository;
 import br.itb.projeto.pizzaria3e.model.repository.ProdutoRepository;
+import jakarta.transaction.Transactional;
 
 @Service
 public class ProdutoService {
@@ -34,5 +36,22 @@ public class ProdutoService {
 	public List<Produto> findAll(){
 		List<Produto> produtos = produtoRepository.findAll();
 		return produtos;
+	}
+	
+	@Transactional
+	public Produto createComFoto(MultipartFile file, Produto produto) {
+		
+		if (file != null && file.getSize() > 0) {
+			try {
+				produto.setFoto(file.getBytes());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			produto.setFoto(null);
+		}
+		produto.setStatusProduto("ATIVO");
+		
+		return produtoRepository.save(produto);
 	}
 }

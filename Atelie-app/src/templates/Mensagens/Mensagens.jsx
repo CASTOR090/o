@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Header from "../../components/Header/Header";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import AutoBot from "../../components/AutoBot/AutoBot";
-import logo from '../../assets/images/atelier-logo.svg';
+import logo from '../../assets/images/primobolan.png';
 
 const Mensagens = () => {
     const [mensagens, setMensagens] = useState([]);
@@ -78,9 +78,9 @@ const Mensagens = () => {
         const mensagem = {
             id: Date.now(),
             texto: novaMensagem,
-            isBot: false,
-            timestamp: new Date().toLocaleTimeString()
-        };
+            isBot: false,   
+            timestamp: new Date().toLocaleTimeString()  
+        };  
         
         const novasMensagens = [...mensagens, mensagem];
         setMensagens(novasMensagens);
@@ -104,13 +104,13 @@ const Mensagens = () => {
     return (
         <div className="d-flex">
             <Sidebar />
-            <div className="p-3 w-100">
+            <div className="p-3 w-100" style={{backgroundColor: '#fff6ed'}}>
                 <Header
                     goTo={'/'}
                     title={'Mensagens'}
                     logo={logo}
                 />
-                <div className="border shadow-lg p-3 m-2">
+                <div className="border shadow-lg p-3 m-2"  >
                     <AutoBot 
                         mensagens={mensagens} 
                         onEnviarResposta={enviarRespostaBot} 

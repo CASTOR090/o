@@ -24,14 +24,7 @@ public class Servico {
 	private double preco;
 	private String info;
 	private byte[] foto;
-    private String tipoRoupa;
-	
-    public String getTipoRoupa() {
-		return tipoRoupa;
-	}
-	public void setTipoRoupa(String tipoRoupa) {
-		this.tipoRoupa = tipoRoupa;
-	}
+
 	@ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
@@ -39,6 +32,7 @@ public class Servico {
     @ManyToOne
     @JoinColumn(name = "produto_id")
     private Produto produto;
+    
     private String statusServico;
 	
     public long getId() {

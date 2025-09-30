@@ -16,6 +16,7 @@ public class Produto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String nome;
+	private String tipo; // ROUPA ou SERVIÇO
 	private String descricao;
 	private String codigoBarras;
 	private byte[] foto;
@@ -41,6 +42,14 @@ public class Produto {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	public String getDescricao() {

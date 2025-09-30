@@ -21,7 +21,7 @@ const VisualizarServico = () => {
     return (
         <div className="d-flex">
             <Sidebar />
-            <div className="p-3 w-100">
+            <div className="p-3 w-100" style={{backgroundColor: '#fff6ed'}}>
                 <Header
                     goTo={'/servicos'}
                     title={'Detalhes do Serviço'}

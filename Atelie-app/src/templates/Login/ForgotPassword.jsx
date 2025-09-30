@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import logo from '../../assets/images/atelier-logo.svg';
+import logo from '../../assets/images/primobolan.png';
 import UsuarioService from "../../services/UsuarioService";
 import './Login.css';
 
@@ -9,7 +9,8 @@ const ForgotPassword = () => {
     const [formData, setFormData] = useState({
         email: "",
         telefone: "",
-        novaSenha: ""
+        novaSenha: "",
+        confirmarSenha: ""
     });
     const [message, setMessage] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -23,6 +24,12 @@ const ForgotPassword = () => {
         e.preventDefault();
         setMessage("");
         setIsLoading(true);
+
+        if (formData.novaSenha !== formData.confirmarSenha) {
+            setMessage("As senhas não coincidem");
+            setIsLoading(false);
+            return;
+        }
 
         UsuarioService.forgotPassword(formData).then(
             (response) => {
@@ -52,7 +59,7 @@ const ForgotPassword = () => {
         <div className="container">
             <form className="login-form" onSubmit={handleSubmit}>
                 <div className="login-logo">
-                    <img src={logo} alt="logo" width={200} />
+                    <img src={logo} alt="logo" />
                 </div>
                 <div className="text-center mb-3">
                     <h5 className="fw-bold">Recuperar Senha</h5>
@@ -90,6 +97,18 @@ const ForgotPassword = () => {
                         name="novaSenha"
                         className="form-control text-center fw-medium shadow" 
                         value={formData.novaSenha}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="confirmarSenha" className="form-label mb-0 fw-bold">Confirmar Senha:</label>
+                    <input 
+                        type="password" 
+                        id="confirmarSenha" 
+                        name="confirmarSenha"
+                        className="form-control text-center fw-medium shadow" 
+                        value={formData.confirmarSenha}
                         onChange={handleChange}
                         required
                     />

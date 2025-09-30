@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Header from "../../components/Header/Header";
 import Sidebar from "../../components/Sidebar/Sidebar";
-import logo from '../../assets/images/atelier-logo.svg';
+import logo from '../../assets/images/primobolan.png';
 
 const NovoProduto = () => {
     const [produto, setProduto] = useState({
@@ -60,9 +60,9 @@ const NovoProduto = () => {
     return (
         <div className="d-flex">
             <Sidebar />
-            <div className="p-3 w-100">
+            <div className="p-3 w-100" style={{backgroundColor: '#fff6ed'}}>
                 <Header
-                    goTo={'/produto'}
+                    goTo={'/promocao'}
                     title={'Novo Produto'}
                     logo={logo}
                 />

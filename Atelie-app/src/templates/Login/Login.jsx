@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import logo from '../../assets/images/atelier-logo.svg';
+import logo from '../../assets/images/primobolan.png';
 import UsuarioService from "../../services/UsuarioService";
 import './Login.css';
 
@@ -37,12 +37,14 @@ const Login = () => {
             () => {
                 const userJson = localStorage.getItem("user");
                 const user = JSON.parse(userJson || '{}');
+                
+                // Salva o tipo de acesso selecionado
+                // const tipoAcesso = formData.tipoAcesso || 'USUARIO';
+                // localStorage.setItem("tipoAcesso", tipoAcesso);
+                
                 if (user.statusUsuario == 'ATIVO') {
                     navigate("/home");
-                } else if (user.statusUsuario == 'TROCAR_SENHA') {
-                    navigate(`/alterarsenha/` + user.id);
-                    //window.location.reload(); ordnael@email.com.br
-                }
+                } 
 
             },
             (error) => {
@@ -63,7 +65,7 @@ const Login = () => {
         <div className="container">
             <form action="" className="login-form"  onSubmit={handleSubmit}>
                 <div className="login-logo">
-                    <img src={logo} alt="logo" width={200} />
+                    <img src={logo} alt="logo" />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label mb-0 fw-bold">Email:</label>
@@ -79,7 +81,10 @@ const Login = () => {
                         value={formData.password || ""}
                         onChange={handleChange} />
                 </div>
-                <div className="d-flex flex-row-reverse mt-1">
+                <div className="d-flex justify-content-between mt-1">
+                    <p className="fw-bold fst-italic opacity-75">Não tem conta?
+                        <Link to={'/cadastro'}> Cadastre-se aqui.</Link>
+                    </p>
                     <p className="fw-bold fst-italic opacity-75 me-1">Esqueceu a senha?
                         <Link to={'/forgotpass'}> Clique aqui.</Link>
                     </p>
@@ -91,10 +96,11 @@ const Login = () => {
                         </div>
                     )}
                 </div>
+                
                 <div className="d-flex justify-content-around mb-3 mt-2">
-                    <button className="btn btn-warning fw-medium shadow" type="button"
+                    <button className="btn btn-light fw-medium shadow" type="button"
                         onClick={backto}>Cancelar</button>
-                    <button className="btn btn-success fw-medium shadow" type="submit">
+                    <button className="btn btn-dark fw-medium shadow" type="submit">
                         Entrar</button>
                 </div>
             </form>

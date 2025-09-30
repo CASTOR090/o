@@ -3,13 +3,17 @@
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<item key="replaceBarOpen" value="true"/>
 	<list key="searchhistory">
+		<item value="Categoria"/>
+		<item value="EsqueciSenha"/>
+		<item value="Mensagem"/>
 		<item value="service"/>
 		<item value="promocao"/>
 		<item value="Promocao"/>
-		<item value="Mensagem"/>
 		<item value="Servico"/>
 	</list>
 	<list key="replacehistory">
+		<item value="Cadastro"/>
+		<item value="EsqueciSenha"/>
 		<item value="servico"/>
 		<item value="Service"/>
 		<item value="Servico"/>

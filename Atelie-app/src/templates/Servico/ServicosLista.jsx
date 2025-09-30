@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Header from "../../components/Header/Header";
 import Sidebar from "../../components/Sidebar/Sidebar";
-import logo from '../../assets/images/atelier-logo.svg';
+import logo from '../../assets/images/primobolan.png';
+import '../../assets/styles/tables.css';
 
 const ServicosLista = () => {
     const [servicos, setServicos] = useState([]);
@@ -22,23 +23,23 @@ const ServicosLista = () => {
     return (
         <div className="d-flex">
             <Sidebar />
-            <div className="p-3 w-100">
+            <div className="p-3 w-100" style={{backgroundColor: '#fff6ed'}}>
                 <Header
                     goTo={'/servico'}
                     title={'Lista de Serviços'}
                     logo={logo}
                 />
-                <div className="border shadow-lg p-2 m-2">
-                    <div className='border-bottom rounded-bottom my-3'>
+                <div className="table-container">
+                    <div className="table-search-section">
                         <form action="">
                             <div className="row m-3">
                                 <div className="col-md-2 text-end">
-                                    <label htmlFor="inputBuscar" className="col-form-label fw-bold">Buscar:</label>
+                                    <label htmlFor="inputBuscar" className="col-form-label table-search-label">Buscar:</label>
                                 </div>
                                 <div className="col-md-8">
                                     <input 
                                         type="text" 
-                                        className="form-control" 
+                                        className="form-control table-search-input" 
                                         id="inputBuscar"
                                         value={busca}
                                         onChange={(e) => setBusca(e.target.value)}
@@ -46,14 +47,14 @@ const ServicosLista = () => {
                                     />
                                 </div>
                                 <div className="col-md-2">
-                                    <button type="button" className="btn btn-primary shadow-lg">
+                                    <button type="button" className="btn table-search-btn">
                                         Buscar
                                     </button>
                                 </div>
                             </div>
                         </form>
                     </div>
-                    <table className="table table-striped table-hover text-center">
+                    <table className="table table-striped table-hover table-elegant table-servicos">
                         <thead>
                             <tr>
                                 <th scope="col">ID</th>
@@ -75,8 +76,8 @@ const ServicosLista = () => {
                                     <td>{servico.dataEntrega}</td>
                                     <td>R$ {servico.preco}</td>
                                     <td>
-                                        <Link to={`/servico/${index + 1}`} className="btn btn-info">
-                                            <i className="bi bi-folder2-open me-2"></i>
+                                        <Link to={`/servico/${index + 1}`} className="btn table-action-btn">
+                                            <i className="bi bi-folder2-open"></i>
                                             Abrir
                                         </Link>
                                     </td>
