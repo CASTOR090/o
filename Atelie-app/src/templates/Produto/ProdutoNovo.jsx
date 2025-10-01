@@ -73,7 +73,7 @@ const ProdutoNovo = () => {
 
     useEffect(() => {
         if (_dbRecords.current) {
-            getCategorias();
+            getCategorias();            
         }
         return () => {
             _dbRecords.current = false;
@@ -89,10 +89,7 @@ const ProdutoNovo = () => {
             (response) => {
                 setMessage(response.data.message);
                 setSuccessful(true);
-                /*window.scrollTo({
-                  top: 0,
-                  behavior: 'smooth'
-                })*/
+                console.log(formData);
             }, (error) => {
                 const resMessage =
                     (error.response &&

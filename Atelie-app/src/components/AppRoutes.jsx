@@ -67,7 +67,7 @@ const AppRoutes = () => {
             <Route path={"/solicitar-servico"} element={<SolicitarServico /> } />
             <Route path={"/ver-produtos"} element={<VerProdutos /> } />
             <Route path={"/ver-servicos"} element={<VerServicos /> } />
-            <Route path={"/categoria/:id/:nome"} element={<CategoriaDetalhes /> } />
+            <Route path={"/categoria/:id"} element={<CategoriaDetalhes /> } />
 
         </Routes>
     )

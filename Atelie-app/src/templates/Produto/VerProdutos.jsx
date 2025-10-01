@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from 'react-router-dom';
 import Header from "../../components/Header/Header";
 import logo from '../../assets/images/primobolan.png';
 import imgProfile from '../../assets/images/imagem.png';
 import Sidebar from "../../components/Sidebar/Sidebar";
 import '../../assets/styles/theme.css';
+import CategoriaService from "../../services/CategoriaService";
+import ProdutoService from "../../services/ProdutoService";
 
 const carrosselStyle = `
     @keyframes scroll {
@@ -26,6 +28,44 @@ const carrosselStyle = `
 `;
 
 const VerProdutos = () => {
+
+    const _dbRecords = useRef(true);
+    const [categorias, setCategorias] = useState([]);
+    const [produtos, setProdutos] = useState([]);
+
+    const getCategorias = () => {
+        CategoriaService.findAll().then(
+            (response) => {
+                const categorias = response.data;
+                setCategorias(categorias);
+            }
+        ).catch((error) => {
+            console.log(error);
+        })
+    }
+
+    const getProdutos = () => {
+        ProdutoService.findAll().then(
+            (response) => {
+                const produtos = response.data;
+                setProdutos(produtos);
+                console.log(response.data);
+
+            }
+        ).catch((error) => {
+            console.log(error);
+        })
+    }
+
+    useEffect(() => {
+        if (_dbRecords.current) {
+            getCategorias();
+            getProdutos();
+        }
+        return () => {
+            _dbRecords.current = false;
+        }
+    }, []);
     // Adicionar estilo CSS
     if (!document.getElementById('carrossel-style')) {
         const style = document.createElement('style');
@@ -33,15 +73,6 @@ const VerProdutos = () => {
         style.textContent = carrosselStyle;
         document.head.appendChild(style);
     }
-    
-    const [categorias] = useState([
-        { id: 1, nome: "Vestidos", imagem: logo },
-        { id: 2, nome: "Blusas", imagem: logo },
-        { id: 3, nome: "Calças", imagem: logo },
-        { id: 4, nome: "Saias", imagem: logo }
-    ]);
-
-
 
     const handleVerDetalhes = () => {
         alert('O pedido deste produto só é feito pelo app');
@@ -51,17 +82,19 @@ const VerProdutos = () => {
         <div className="mb-4">
             <h4 className="text-accent-black mb-3">{title}</h4>
             <div className="carrossel-container mx-auto">
-                <div className="d-flex carrossel-animado" style={{ 
+                <div className="d-flex carrossel-animado" style={{
                     gap: '30px',
                     width: '2800px'
                 }}>
                     {items.concat(items).map((item, index) => (
                         <div key={`${item.id}-${index}`} className="flex-shrink-0" style={{ width: '320px' }}>
-                            <Link to={`/categoria/${item.id}/${item.nome}`} style={{ textDecoration: 'none' }}>
+                            <Link to={`/categoria/${item.id}`} style={{ textDecoration: 'none' }}>
                                 <div className="card card-elegant">
-                                    <div className="card-img-top" 
-                                         style={{ height: '240px', backgroundImage: `url(${item.imagem})`, 
-                                         backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                                    <div className="card-img-top"
+                                        style={{
+                                            height: '200px', backgroundImage: `url(/icons/${item.icone}.png)`,
+                                            backgroundSize: 'cover', backgroundPosition: 'center'
+                                        }}>
                                     </div>
                                     <div className="card-body text-center">
                                         <h6 className="card-title">{item.nome}</h6>
@@ -103,19 +136,28 @@ const VerProdutos = () => {
                     </div>
 
                     <div className="row g-4">
-                        {Array.from({ length: 10 }, (_, index) => (
-                            <div className="col-md-4" key={index + 1}>
+                        {produtos.map((produto) => (
+                            <div className="col-md-4" key={produto.id}>
                                 <div className="card h-100 card-elegant bg-white">
-                                    <div className="card-img-top" 
-                                         style={{ height: '250px', backgroundImage: `url(${logo})`, 
-                                         backgroundSize: 'cover', backgroundPosition: 'center' }}>
-                                    </div>
+                                    <div
+                                        className="card-img-top"
+                                        style={{
+                                            height: '250px',
+                                            backgroundImage: `url(${produto.foto ? 'data:image/jpeg;base64,' + produto.foto : logo})`,
+                                            backgroundSize: 'cover',
+                                            backgroundPosition: 'center',
+                                        }}
+                                    ></div>
                                     <div className="card-body">
-                                        <h5 className="card-title text-accent-black">Produto {index + 1}</h5>
-                                        <p className="card-text">Descrição do produto {index + 1}</p>
+                                        <h5 className="card-title text-accent-black">{produto.nome}</h5>
+                                        <p className="card-text">{produto.descricao}</p>
                                         <div className="d-flex justify-content-between align-items-center">
-                                            <span className="h5 mb-0" style={{ color: '#495057' }}>R$ {(50 + index * 10).toFixed(2)}</span>
-                                            <button className="btn btn-beige btn-sm" onClick={handleVerDetalhes}>Ver Detalhes</button>
+                                            <span className="h5 mb-0" style={{ color: '#495057' }}>
+                                                R$ {Number(produto.preco).toFixed(2)}
+                                            </span>
+                                            <button className="btn btn-beige btn-sm" onClick={handleVerDetalhes}>
+                                                Ver Detalhes
+                                            </button>
                                         </div>
                                     </div>
                                 </div>

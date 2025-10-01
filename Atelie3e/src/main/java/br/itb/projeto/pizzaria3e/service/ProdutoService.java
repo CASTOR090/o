@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import br.itb.projeto.pizzaria3e.model.entity.Categoria;
 import br.itb.projeto.pizzaria3e.model.entity.Produto;
 import br.itb.projeto.pizzaria3e.model.repository.CategoriaRepository;
 import br.itb.projeto.pizzaria3e.model.repository.ProdutoRepository;
@@ -35,6 +36,15 @@ public class ProdutoService {
 	
 	public List<Produto> findAll(){
 		List<Produto> produtos = produtoRepository.findAll();
+		return produtos;
+	}
+	
+	public List<Produto> findByCategoria(long categoriaId){
+		
+		Categoria categoria = categoriaRepository.findById(categoriaId).get();
+		
+		List<Produto> produtos = produtoRepository.findByCategoria(categoria);
+		
 		return produtos;
 	}
 	

@@ -9,6 +9,10 @@ const findById = id => {
   return http.mainInstance.get(API_URL + `findById/${id}`);
 };
 
+const findByCategoria = id => {
+  return http.mainInstance.get(API_URL + `findByCategoria/${id}`);
+};
+
 const create = (data, usuario) => {
     const payload = {
         ...data,
@@ -92,6 +96,7 @@ const findAllCardapio = () => {
 const ProdutoService = {
   findAll,
   findById,
+  findByCategoria,
   create,
   createSemFoto,
   createComFoto,

@@ -55,6 +55,14 @@ public class ProdutoController {
 		return new ResponseEntity<List<Produto>>(produtos, HttpStatus.OK);
 	}
 	
+	@GetMapping("/findByCategoria/{id}")
+	public ResponseEntity<List<Produto>> findByCategoria(@PathVariable long id){
+		
+		List<Produto> produtos = produtoService.findByCategoria(id);
+		
+		return new ResponseEntity<List<Produto>>(produtos, HttpStatus.OK);
+	}
+	
 	@PostMapping("/createComFoto")
 	public ResponseEntity<?> createComFoto(
 			@RequestParam(required = false) MultipartFile file,
