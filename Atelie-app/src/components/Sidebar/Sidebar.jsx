@@ -36,6 +36,7 @@ const Sidebar = () => {
                         <Link to={'/ver-servicos'} className='nav-link'>Serviços</Link>
                     </>
                 )}
+                <Link to={'/login'} className='nav-link'>Sair</Link>
             </nav>
         </div>
     )

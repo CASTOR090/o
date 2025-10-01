@@ -26,29 +26,26 @@ INSERT Usuario (nome, email, senha, telefone, nivelAcesso, dataCadastro, statusU
 VALUES ('Fulano da Silva', 'fulano@email.com.br', 'MTIzNDU2Nzg=', '987654321','ADMIN', GETDATE(), 'ATIVO') 
 INSERT Usuario (nome, email, senha, telefone, nivelAcesso, dataCadastro, statusUsuario)
 VALUES ('Beltrana de Sá', 'beltrana@email.com.br', 'MTIzNDU2Nzg=', '987654321','USER', GETDATE(), 'ATIVO')
-INSERT Usuario (nome, email, senha, telefone, nivelAcesso, dataCadastro, statusUsuario)
-VALUES ('Sicrana de Oliveira', 'sicrana@email.com.br', 'MTIzNDU2Nzg=', '987654321','USER', GETDATE(), 'ATIVO')
-INSERT Usuario (nome, email, senha, telefone, nivelAcesso, dataCadastro, statusUsuario)
-VALUES ('Ordnael Zurc', 'ordnael@email.com.br', 'MTIzNDU2Nzg=', '987654321', 'USER', GETDATE(), 'ATIVO')
 GO
 
 CREATE TABLE Categoria
 (
 	id	 INT		  IDENTITY,
 	nome VARCHAR(100) NOT NULL,  -- QUEIJO, FRANGO, CARNES & FRIOS, LEGUMES, DOCES, ESPECIAS, PEIXE
+	icone VARCHAR(100) NOT NULL, 
 
 	PRIMARY KEY(id)
 )
 GO
-INSERT Categoria (nome) VALUES ('VESTIDO')
-INSERT Categoria (nome) VALUES ('SAIA')
-INSERT Categoria (nome) VALUES ('CAMISA')
-INSERT Categoria (nome) VALUES ('CALÇA')
-INSERT Categoria (nome) VALUES ('BLUSA E JAQUETA')
-INSERT Categoria (nome) VALUES ('CONJUNTO')
-INSERT Categoria (nome) VALUES ('ARREMATE')
-INSERT Categoria (nome) VALUES ('PERSONALIZAR')
-INSERT Categoria (nome) VALUES ('AJUSTE')
+INSERT Categoria (nome) VALUES ('VESTIDO', 'vestido')
+INSERT Categoria (nome) VALUES ('SAIA', 'saia')
+INSERT Categoria (nome) VALUES ('CAMISA', 'camisa')
+INSERT Categoria (nome) VALUES ('CALÇA', 'calca')
+INSERT Categoria (nome) VALUES ('BLUSA E JAQUETA', 'blusa_jaqueta')
+INSERT Categoria (nome) VALUES ('CONJUNTO', 'conjunto')
+INSERT Categoria (nome) VALUES ('ARREMATE', 'arremate')
+INSERT Categoria (nome) VALUES ('PERSONALIZAR', 'personalizar')
+INSERT Categoria (nome) VALUES ('AJUSTE', 'ajuste')
 GO
 
 CREATE TABLE Produto
@@ -174,5 +171,7 @@ GO
 
 
 DELETE FROM Produto where id = 1
+
+DELETE FROM Usuario where id = 4
 
 drop table promocao

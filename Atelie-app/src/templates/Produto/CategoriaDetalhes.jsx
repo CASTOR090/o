@@ -24,7 +24,7 @@ const CategoriaDetalhes = () => {
                             </h2>
                         </div>
                     </div>
-                    
+
                     <div className="row g-4">
                         {Array.from({ length: 6 }, (_, index) => (
                             <div className="col-md-4" key={index + 1}>
@@ -35,10 +35,10 @@ const CategoriaDetalhes = () => {
                                     </div>
                                     <div className="card-body">
                                         <h5 className="card-title text-accent-black">{nome} {index + 1}</h5>
-                                        <p className="card-text">Descrição do produto {index + 1} da categoria {nome}</p>
+                                        <p className="card-text">Descrição do produto {index + 1}</p>
                                         <div className="d-flex justify-content-between align-items-center">
-                                            <span className="h5 mb-0" style={{ color: '#495057' }}>R$ {(60 + index * 15).toFixed(2)}</span>
-                                            <button className="btn btn-beige btn-sm">Ver Detalhes</button>
+                                            <span className="h5 mb-0" style={{ color: '#495057' }}>R$ {60 + index * 15}</span>
+                                            <button className="btn btn-beige btn-sm" onClick={() => alert('O pedido deste produto só é feito pelo app')}>Ver Detalhes</button>
                                         </div>
                                     </div>
                                 </div>

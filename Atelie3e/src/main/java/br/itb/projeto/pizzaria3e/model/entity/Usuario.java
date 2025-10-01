@@ -71,5 +71,11 @@ public class Usuario {
 	public void setDataCadastro(LocalDateTime dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
+	@Override
+	public String toString() {
+		return "Usuario [nome=" + nome + ", telefone=" + telefone + ", email=" + email + ", senha=" + senha + "]";
+	}
+	
+	
 	
 }

@@ -56,9 +56,9 @@ public class UsuarioController {
 	}
 	
 	
-	@PostMapping("/save")
+	@PostMapping("/create")
 	public ResponseEntity<?> save(@RequestBody Usuario usuario) {
-		
+
 		Usuario _usuario = usuarioService.save(usuario);
 		
 		if(_usuario != null) {

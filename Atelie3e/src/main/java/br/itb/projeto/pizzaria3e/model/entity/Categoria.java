@@ -14,6 +14,7 @@ public class Categoria {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String nome;
+	private String icone;
 	
 	// Coloque o cursor aqui
 	// Source -> Generate Getters and Setters...
@@ -30,9 +31,13 @@ public class Categoria {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	public String getIcone() {
+		return icone;
+	}
+	public void setIcone(String icone) {
+		this.icone = icone;
+	}
 	
-	
-
 }
 
 

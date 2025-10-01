@@ -3,38 +3,46 @@ import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import logo from '../../assets/images/primobolan.png';
+import UsuarioService from "../../services/UsuarioService";
 
 const NovoUsuario = () => {
-    const navigate = useNavigate();
-    const [formData, setFormData] = useState({
-        nome:'',
-        email: '',
-        telefone: '',
-        senha: '',
-        confirmarSenha: ''
-    });
+    // const [nivel, setNivel] = useState();
+    const [formData, setFormData] = useState({});
+    const [successful, setSuccessful] = useState(false);
+    const [message, setMessage] = useState();
 
     const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
+        const name = e.target.name;
+        const value = e.target.value;
+        setFormData(formData => ({ ...formData, [name]: value }));
     };
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (formData.senha !== formData.confirmarSenha) {
-            alert('As senhas não coincidem!');
-            return;
-        }
-        console.log('Novo usuário:', formData);
-        navigate('/usuarios');
-    };
+        setSuccessful(false);
+
+        console.log(formData);
+        
+        UsuarioService.create(formData).then(
+            (response) => {
+                setMessage(response.data.message);
+                setSuccessful(true);
+                /*window.scrollTo({
+                  top: 0,
+                  behavior: 'smooth'
+                })*/
+            }, (error) => {
+                const message = error.response.data.message;
+                setMessage(message);
+            }
+        )
+    }
 
     return (
         <div className="d-flex">
             <Sidebar />
-            <div className="p-3 w-100" style={{backgroundColor: '#fff6ed'}}>
+            <div className="p-3 w-100" style={{ backgroundColor: '#fff6ed' }}>
                 <Header
                     goTo={'/usuario'}
                     title={'Novo Usuário'}
