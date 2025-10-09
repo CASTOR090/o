@@ -1,32 +1,34 @@
 :root {
-  --primary-beige: #E8E8E8;
-  --secondary-beige: #F5F5F5;
-  --light-beige: #FAFAFA;
-  --dark-beige: #666666;
-  --accent-black: #1A1A1A;
+  --primary-pink: rgba(255, 119, 181, 0.13);
+  --secondary-pink: rgba(255, 119, 181, 0);
+  --accent-black: rgba(0, 0, 0, 1);
   --pure-white: #FFFFFF;
+  --sidebar-pink: rgba(255, 119, 181, 0.13);
+  --light-beige: rgba(255, 240, 250, 1);
+  --secondary-beige: rgba(255, 240, 250, 1);
 }
 
-.bg-primary-beige { background-color: var(--primary-beige) !important; }
-.bg-secondary-beige { background-color: var(--secondary-beige) !important; }
-.bg-light-beige { background-color: var(--light-beige) !important; }
-.bg-dark-beige { background-color: var(--dark-beige) !important; }
+.bg-primary-pink { background-color: var(--primary-pink) !important; }
+.bg-secondary-pink { background-color: var(--secondary-pink) !important; }
 .bg-accent-black { background-color: var(--accent-black) !important; }
+.bg-pure-white { background-color: var(--pure-white) !important; }
+.bg-light-beige { background-color: var(--light-beige) !important; }
+.bg-secondary-beige { background-color: var(--secondary-beige) !important; }
 
-.text-primary-beige { color: var(--primary-beige) !important; }
-.text-secondary-beige { color: var(--secondary-beige) !important; }
-.text-dark-beige { color: var(--dark-beige) !important; }
+.text-primary-pink { color: var(--primary-pink) !important; }
+.text-secondary-pink { color: var(--secondary-pink) !important; }
 .text-accent-black { color: var(--accent-black) !important; }
+.text-pure-white { color: var(--pure-white) !important; }
 
-.btn-beige {
+.btn-primary {
   background-color: var(--accent-black);
   border-color: var(--accent-black);
   color: var(--pure-white);
 }
 
-.btn-beige:hover {
-  background-color: #000000;
-  border-color: #000000;
+.btn-primary:hover {
+  background-color: #333333;
+  border-color: #333333;
   color: var(--pure-white);
 }
 
@@ -45,6 +47,6 @@
 }
 
 .sidebar-elegant {
-  background-color: var(--light-beige) !important;
-  border-right: 2px solid var(--primary-beige);
+  background-color: #FFFFFF !important;
+  border-right: 2px solid var(--primary-pink);
 }

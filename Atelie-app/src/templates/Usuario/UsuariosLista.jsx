@@ -79,10 +79,10 @@ const UsuariosLista = () => {
                                 <td>{usuario.nivelAcesso}</td>
                                 <td>{usuario.statusUsuario}</td>
                                 <td>
-                                    <button type="button" className="btn table-action-btn">
+                                    <Link to={`/usuario-editar/${usuario.id}`} className="btn table-action-btn">
                                         <i className="bi bi-folder2-open"></i>
                                         Abrir
-                                    </button>
+                                    </Link>
                                 </td>
                             </tr>
                             ))}

@@ -26,6 +26,7 @@ import ProdutoNovo from '../templates/Produto/ProdutoNovo';
 import ProdutosLista from '../templates/Produto/ProdutosLista';
 import NovaPromocao from '../templates/Promocao/NovaPromocao';
 import NovoUsuario from '../templates/Usuario/NovoUsuario';
+import UsuarioEditar from '../templates/Usuario/UsuarioEditar';
 import VerProdutos from '../templates/Produto/VerProdutos';
 import VerServicos from '../templates/Servico/VerServicos';
 import CategoriaDetalhes from '../templates/Produto/CategoriaDetalhes';
@@ -60,6 +61,7 @@ const AppRoutes = () => {
             <Route path={"/produto-novo"} element={<ProtectedRoute adminOnly={true}><ProdutoNovo /></ProtectedRoute>} />
             <Route path={"/nova-promocao"} element={<ProtectedRoute adminOnly={true}><NovaPromocao /></ProtectedRoute>} />
             <Route path={"/novo-usuario"} element={<ProtectedRoute adminOnly={true}><NovoUsuario /></ProtectedRoute>} />
+            <Route path={"/usuario-editar/:id"} element={<ProtectedRoute adminOnly={true}><UsuarioEditar /></ProtectedRoute>} />
 
             <Route path={"/minhas-mensagens"} element={<MinhasMensagens /> } />
             <Route path={"/nova-mensagem"} element={<NovaMensagem /> } />

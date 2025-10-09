@@ -116,6 +116,18 @@ public class UsuarioController {
 		throw new ResourceNotFoundException("Erro ao ativar a conta de usuário!");
 	}
 	
+	@PutMapping("/update/{id}")
+	public ResponseEntity<?> update(@PathVariable long id, @RequestBody Usuario usuario) {
+		
+		Usuario _usuario = usuarioService.update(id, usuario);
+		
+		if(_usuario != null) {
+			return ResponseEntity.ok().body("Usuário atualizado com sucesso!");
+		}
+		
+		throw new ResourceNotFoundException("Erro ao atualizar o usuário!");
+	}
+	
 }
 
 

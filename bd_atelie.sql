@@ -1,4 +1,4 @@
-xUSE master IF EXISTS(select * from sys.databases where name='bd_atelie') 
+USE master IF EXISTS(select * from sys.databases where name='bd_atelie') 
 DROP DATABASE bd_atelie
 GO 
 -- CRIAR UM BANCO DE DADOS
@@ -7,7 +7,7 @@ GO
 -- ACESSAR O BANCO DE DADOS
 USE bd_atelie
 GO
-
+ 
 CREATE TABLE Usuario
 ( 
    id            INT			IDENTITY,
@@ -18,7 +18,7 @@ CREATE TABLE Usuario
    nivelAcesso   VARCHAR(10)    NULL, -- ADMIN ou USER
    dataCadastro	 SMALLDATETIME	NOT NULL,
    statusUsuario VARCHAR(20)    NOT NULL, -- ATIVO ou INATIVO ou TROCAR_SENHA
-
+ 
    PRIMARY KEY (id)
 )
 GO
@@ -27,27 +27,27 @@ VALUES ('Fulano da Silva', 'fulano@email.com.br', 'MTIzNDU2Nzg=', '987654321','A
 INSERT Usuario (nome, email, senha, telefone, nivelAcesso, dataCadastro, statusUsuario)
 VALUES ('Beltrana de Sá', 'beltrana@email.com.br', 'MTIzNDU2Nzg=', '987654321','USER', GETDATE(), 'ATIVO')
 GO
-
+ 
 CREATE TABLE Categoria
 (
 	id	 INT		  IDENTITY,
 	nome VARCHAR(100) NOT NULL,  -- QUEIJO, FRANGO, CARNES & FRIOS, LEGUMES, DOCES, ESPECIAS, PEIXE
-	icone VARCHAR(100) NOT NULL, 
-
+	icone VARCHAR(100) NOT NULL,
+ 
 	PRIMARY KEY(id)
 )
 GO
-INSERT Categoria (nome) VALUES ('VESTIDO', 'vestido')
-INSERT Categoria (nome) VALUES ('SAIA', 'saia')
-INSERT Categoria (nome) VALUES ('CAMISA', 'camisa')
-INSERT Categoria (nome) VALUES ('CALÇA', 'calca')
-INSERT Categoria (nome) VALUES ('BLUSA E JAQUETA', 'blusa_jaqueta')
-INSERT Categoria (nome) VALUES ('CONJUNTO', 'conjunto')
-INSERT Categoria (nome) VALUES ('ARREMATE', 'arremate')
-INSERT Categoria (nome) VALUES ('PERSONALIZAR', 'personalizar')
-INSERT Categoria (nome) VALUES ('AJUSTE', 'ajuste')
+INSERT Categoria (nome, icone) VALUES ('VESTIDO', 'vestido')
+INSERT Categoria (nome, icone) VALUES ('SAIA', 'saia')
+INSERT Categoria (nome, icone) VALUES ('CAMISA', 'camisa')
+INSERT Categoria (nome, icone) VALUES ('CALÇA', 'calca')
+INSERT Categoria (nome, icone) VALUES ('BLUSA E JAQUETA', 'blusa_jaqueta')
+INSERT Categoria (nome, icone) VALUES ('CONJUNTO', 'conjunto')
+INSERT Categoria (nome, icone) VALUES ('ARREMATE', 'arremate')
+INSERT Categoria (nome, icone) VALUES ('PERSONALIZAR', 'personalizar')
+INSERT Categoria (nome, icone) VALUES ('AJUSTE', 'ajuste')
 GO
-
+ 
 CREATE TABLE Produto
 (
 	id			 INT		    IDENTITY,
@@ -59,14 +59,14 @@ CREATE TABLE Produto
 	preco		 DECIMAL(8,2)	NOT NULL,
 	categoria_id INT			NOT NULL,
 	statusProduto	 VARCHAR(10)	NOT NULL, -- ATIVO, CARDAPIO ou INATIVO
-
+ 
 	PRIMARY KEY (id),
 	FOREIGN KEY (categoria_id) REFERENCES Categoria (id)
 )
 GO
 INSERT Produto (nome, tipo, descricao, codigoBarras, foto, preco, categoria_id, statusProduto) 
 VALUES ('Muçarela', 'ROUPA', 'Base de molho de tomate com cobertura de muçarela, orégano e tomate', NULL, NULL, 29.98, 2, 'ATIVO')
-
+ 
 
 CREATE TABLE Servico
 (
@@ -79,12 +79,12 @@ CREATE TABLE Servico
 	produto_id	 INT			NOT NULL,
 	usuario_id	 INT			NOT NULL,
 	statusServico	 VARCHAR(10)	NOT NULL, -- ATIVO ou INATIVO
-
+ 
 	PRIMARY KEY (id),
 	FOREIGN KEY (produto_id) REFERENCES Produto (id),
 	FOREIGN KEY (Usuario_id) REFERENCES Usuario (id)
 )
-
+ 
 
 CREATE TABLE Mensagem
 (
@@ -95,7 +95,7 @@ CREATE TABLE Mensagem
 	telefone	    VARCHAR(20)       NULL,
 	texto 	        VARCHAR(400)  NOT NULL,
 	statusMensagem  VARCHAR(10)   NOT NULL, -- ATIVO ou INATIVO
-
+ 
 	PRIMARY KEY (id)
 )
 GO
@@ -104,7 +104,7 @@ VALUES (GETDATE(), 'Ordnael Zurc', 'ordnael@email.com', '(11) 98765-4123', 'Mens
 INSERT Mensagem (dataMensagem, emissor, email, telefone, texto, statusMensagem) 
 VALUES (GETDATE(), 'Maria Onete', 'maria@email.com', null, 'Segunda mensagem de teste', 'ATIVO')
 GO
-
+ 
 
 CREATE TABLE Promocao
 (
@@ -120,14 +120,14 @@ CREATE TABLE Promocao
 GO
 INSERT Promocao (id, nome, descricao,foto, preco, desconto, statusPromocao) 
 VALUES ('', '', '', '', '', '', '', '')
-
+ 
 
 SELECT * FROM Usuario
 SELECT * FROM Mensagem
 SELECT * FROM Categoria
 SELECT * FROM Produto
 SELECT * FROM Promocao
-
+ 
 
 /* VERIFICAR CONEXÕES EXISTENTES */
 /*
@@ -136,9 +136,9 @@ WHERE database_id = DB_ID('bd_pizzaria_3d')
 AND host_name IS NOT NULL
 AND program_name LIKE 'Microsoft SQL Server Management Studio%'
 */
-
-/* 
-
+ 
+/*
+ 
 CREATE TABLE Avaliacao
 (
 	id	            INT			   IDENTITY,
@@ -148,13 +148,13 @@ CREATE TABLE Avaliacao
 	nota			DECIMAL(3,1)   NOT NULL,
 	comentario	    VARCHAR(100)       NULL,
 	statusAvaliacao	VARCHAR(10)	   NOT NULL, -- ATIVO ou INATIVO
-
+ 
 	PRIMARY KEY (id),
 	FOREIGN KEY (usuario_id) REFERENCES Usuario (id),
 	FOREIGN KEY (produto_id) REFERENCES Produto (id)
 )
 GO
-
+ 
 CREATE TABLE ProdutoNota
 (
 	id	              INT			 IDENTITY,
@@ -162,16 +162,17 @@ CREATE TABLE ProdutoNota
 	produto_id		  INT			 NOT NULL,
 	nota			  DECIMAL(3,1)   NOT NULL,
 	statusProdutoNota VARCHAR(10)	 NOT NULL, -- ATIVO ou INATIVO
-
+ 
 	PRIMARY KEY (id),
 	FOREIGN KEY (produto_id) REFERENCES Produto (id)
 )
 GO
 */
-
+ 
 
 DELETE FROM Produto where id = 1
 
 DELETE FROM Usuario where id = 4
-
+ 
+ 
 drop table promocao

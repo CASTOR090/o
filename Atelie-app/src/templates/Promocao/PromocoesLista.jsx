@@ -14,8 +14,8 @@ const PromocoesLista = () => {
 
     const [promocoes, setPromocoes] = useState([]);
 
-    const getId = (id) => {
-        navigate(`/promocaoeditar/${id}`)
+    const verDetalhes = () => {
+        navigate('/nova-promocao')
     }
 
     useEffect(() => {
@@ -65,7 +65,7 @@ const PromocoesLista = () => {
                                                 <span className="h5 mb-0" style={{ color: '#495057' }}>{promocao.desconto}% OFF</span>
                                                 <button 
                                                     className="btn btn-beige btn-sm" 
-                                                    onClick={() => getId(promocao.id)}>
+                                                    onClick={verDetalhes}>
                                                     Ver Detalhes
                                                 </button>
                                             </div>

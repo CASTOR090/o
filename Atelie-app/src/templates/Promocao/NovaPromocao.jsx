@@ -60,6 +60,21 @@ const NovaPromocao = () => {
         )
     };
 
+    const handleExcluir = () => {
+        if (window.confirm('Tem certeza que deseja excluir esta promoção?')) {
+            // Como é uma nova promoção, apenas limpa o formulário
+            setFormData({
+                nome: '',
+                descricao: '',
+                preco: '',
+                desconto: '',
+            });
+            setFile("");
+            setChosenImage();
+            alert('Formulário limpo!');
+        }
+    };
+
     return (
         <div className="d-flex">
             <Sidebar />
@@ -138,13 +153,18 @@ const NovaPromocao = () => {
                             </div>
                         </div>
 
-                        <div className="d-flex justify-content-end gap-2">
-                            <button type="button" className="btn btn-secondary" onClick={() => navigate('/promocao')}>
-                                Cancelar
+                        <div className="d-flex justify-content-between">
+                            <button type="button" className="btn btn-danger" onClick={handleExcluir}>
+                                Excluir
                             </button>
-                            <button type="submit" className="btn btn-success">
-                                Salvar Promoção
-                            </button>
+                            <div className="d-flex gap-2">
+                                <button type="button" className="btn btn-secondary" onClick={() => navigate('/promocao')}>
+                                    Cancelar
+                                </button>
+                                <button type="submit" className="btn btn-success">
+                                    Salvar Promoção
+                                </button>
+                            </div>
                         </div>
                     </form>
                 </div>

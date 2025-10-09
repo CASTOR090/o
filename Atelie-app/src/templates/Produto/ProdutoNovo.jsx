@@ -73,7 +73,8 @@ const ProdutoNovo = () => {
 
     useEffect(() => {
         if (_dbRecords.current) {
-            getCategorias();            
+            getCategorias();   
+            console.log( getCategorias());         
         }
         return () => {
             _dbRecords.current = false;

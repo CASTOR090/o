@@ -124,6 +124,23 @@ public class UsuarioService {
 		}
 		return null;
 	}
+	
+	@Transactional
+	public Usuario update(long id, Usuario usuario) {
+		Optional<Usuario> _usuario = usuarioRepository.findById(id);
+		
+		if (_usuario.isPresent()) {
+			Usuario usuarioAtualizado = _usuario.get();
+			
+			usuarioAtualizado.setNome(usuario.getNome());
+			usuarioAtualizado.setEmail(usuario.getEmail());
+			usuarioAtualizado.setTelefone(usuario.getTelefone());
+			usuarioAtualizado.setNivelAcesso(usuario.getNivelAcesso());
+			
+			return usuarioRepository.save(usuarioAtualizado);
+		}
+		return null;
+	}
 
 }
 

@@ -6,20 +6,25 @@
     margin-top: 10px;
     width: 200px;
     height: 98.5vh;
-    border: solid rgb(255, 145, 0) 1px;
+    background-color: #FFFFFF;
+    border: solid rgba(255, 119, 181, 0.3) 1px;
     border-radius: 10px;
-    box-shadow: 2px 2px 5px rgb(100, 25, 1);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .sidebar a {
     padding: 20px 10px;
+    color: rgba(0, 0, 0, 1) !important;
+    text-decoration: none;
 }
 
 .sidebar a:hover {
     font-size: 18px;
     font-weight: bold;
-    background-color: rgb(200, 200, 250);
+    background-color: #FFFFFF;
+    color: rgba(0, 0, 0, 1) !important;
     text-align: center;
     margin: 2px;
-    box-shadow: 2px 2px 5px rgb(100, 25, 1);
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
